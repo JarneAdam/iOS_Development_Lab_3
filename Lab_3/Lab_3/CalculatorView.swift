@@ -1,87 +1,80 @@
+//
+//  CalculatorView.swift
+//  Lab_3
+//
+//  Created by Jarne Adam on 14/10/2025.
+//
+
 import SwiftUI
 
 struct CalculatorView: View {
-    @State private var result = ""
-
+    @State var calcEngine = CalcEngine()
     var body: some View {
-        VStack {
-            HStack{
-                TextEditor(text: .constant(result))
-                    .frame(width: 100, height: 150)
-                    .border(Color.gray)
-                    .background(Color.white)
-                    .padding()
-                    .disabled(true)
-                
+        VStack(alignment: .leading){
+            HStack {
+                TextEditor(text: .constant(calcEngine.result)).padding(2).frame(width: 100, height: 150).border(Color.black)
                 Grid {
+                    
                     GridRow {
                         ForEach(7..<10) { number in
-                            CalculatorButton(label: "\(number)") {
-                                // voorlopig leeg
+                            NumberButtonView(number: number) {
+                                calcEngine.addNumberText(number: number)
                             }
                         }
-                        CalculatorButton(label: "/"){
-                            
+                        
+                        Button("/") {
+                            calcEngine.dividerOperatorPressed()
                         }
                     }
-                
                     GridRow {
-                        ForEach(4..<7) { number in
-                            CalculatorButton(label: "\(number)") {
-                                // voorlopig leeg
+                        ForEach(4...6, id: \.self) { number in
+                            NumberButtonView(number: number) {
+                                calcEngine.addNumberText(number: number)
                             }
                         }
-                        CalculatorButton(label: "*"){
-                            
+                        Button("*") {
+                            calcEngine.multiplierOperatorPressed()
                         }
                     }
-                    
                     GridRow {
                         ForEach(1..<4) { number in
-                            CalculatorButton(label: "\(number)") {
-                                // voorlopig leeg
+                            NumberButtonView(number: number) {
+                                calcEngine.addNumberText(number: number)
                             }
                         }
-                        CalculatorButton(label: "-"){
-                            
+                        Button("-") {
+                            calcEngine.minusOperatorPressed()
                         }
                     }
-                    
                     GridRow {
-                        CalculatorButton(label: "0") {
-                            // voorlopig leeg
+                        NumberButtonView(number: 0) {
+                            calcEngine.addNumberText(number: 0)
                         }
+                        
                         Text("")
                         Text("")
-                        CalculatorButton(label: "+"){
-                            
+                        Button("+") {
+                            calcEngine.addOperatorPressed()
                         }
                     }
-                    
                     GridRow {
-                        CalculatorButton(label: "Clear") {
-                            // voorlopig leeg
-                        }
-                        .gridCellColumns(2)
-                        CalculatorButton(label: "Enter"){
-                            
-                        }
-                        .gridCellColumns(2)
+                        Button("Clear") {
+                            calcEngine.clear()
+                        }.gridCellColumns(2)
+                        Button("Enter") {
+                            calcEngine.addNumber()
+                        }.gridCellColumns(2)
+                        
                     }
                 }
-                .padding()
+               
             }
+           
+            Button("Show stack") {
+                calcEngine.showStack()
+            }
+            
         }
-        .padding()
-        Button("SHOW STACK") {
-            // voorlopig leeg
-        }
-        .gridCellColumns(2)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .foregroundColor(.white)
-        .cornerRadius(8)
     }
 }
 
