@@ -12,7 +12,7 @@ struct CalculatorView: View {
     var body: some View {
         VStack(alignment: .leading){
             HStack {
-                TextEditor(text: .constant(calcEngine.result)).padding(2).frame(width: 100, height: 150).border(Color.black)
+                TextEditor(text: .constant(calcEngine.result)).padding(2).frame(width: 150, height: 200).border(Color.black)
                 
                 Grid {
                     GridRow {
@@ -64,11 +64,12 @@ struct CalculatorView: View {
                         }.gridCellColumns(2)
                     }
                 }
+                .frame(maxWidth: 200, maxHeight: 200)
             }
-           
-            Button("Show stack") {
+            FunctionButtonView(function: "Show stack") {
                 calcEngine.showStack()
             }
+            .frame(maxWidth: 100)
         }
     }
 }

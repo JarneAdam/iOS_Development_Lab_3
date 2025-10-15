@@ -12,7 +12,16 @@ struct NumberButtonView: View {
     var code : () -> Void
     
     var body: some View {
-        Button("\(number)", action: code)
+        Button(action: code) {
+            Text("\(number)")
+                .font(.title2.bold())
+                .foregroundColor(.black)
+                .frame(width: 35, height: 35)
+                .background(Color(white: 0.9))
+                .cornerRadius(12)
+                .shadow(color: .gray.opacity(0.4), radius: 3, x: 0, y: 2)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
@@ -21,3 +30,4 @@ struct NumberButtonView: View {
         print("1")
     }
 }
+
