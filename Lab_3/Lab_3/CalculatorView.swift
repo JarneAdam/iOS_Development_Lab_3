@@ -13,15 +13,14 @@ struct CalculatorView: View {
         VStack(alignment: .leading){
             HStack {
                 TextEditor(text: .constant(calcEngine.result)).padding(2).frame(width: 100, height: 150).border(Color.black)
+                
                 Grid {
-                    
                     GridRow {
                         ForEach(7..<10) { number in
                             NumberButtonView(number: number) {
                                 calcEngine.addNumberText(number: number)
                             }
                         }
-                        
                         Button("/") {
                             calcEngine.dividerOperatorPressed()
                         }
@@ -50,7 +49,6 @@ struct CalculatorView: View {
                         NumberButtonView(number: 0) {
                             calcEngine.addNumberText(number: 0)
                         }
-                        
                         Text("")
                         Text("")
                         Button("+") {
@@ -64,16 +62,13 @@ struct CalculatorView: View {
                         Button("Enter") {
                             calcEngine.addNumber()
                         }.gridCellColumns(2)
-                        
                     }
                 }
-               
             }
            
             Button("Show stack") {
                 calcEngine.showStack()
             }
-            
         }
     }
 }
