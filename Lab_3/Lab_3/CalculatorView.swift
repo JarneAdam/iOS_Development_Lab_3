@@ -21,7 +21,7 @@ struct CalculatorView: View {
                                 calcEngine.addNumberText(number: number)
                             }
                         }
-                        Button("/") {
+                        OperatorButtonView(mathOperator: "/") {
                             calcEngine.dividerOperatorPressed()
                         }
                     }
@@ -31,7 +31,7 @@ struct CalculatorView: View {
                                 calcEngine.addNumberText(number: number)
                             }
                         }
-                        Button("*") {
+                        OperatorButtonView(mathOperator: "*") {
                             calcEngine.multiplierOperatorPressed()
                         }
                     }
@@ -41,7 +41,7 @@ struct CalculatorView: View {
                                 calcEngine.addNumberText(number: number)
                             }
                         }
-                        Button("-") {
+                        OperatorButtonView(mathOperator: "-") {
                             calcEngine.minusOperatorPressed()
                         }
                     }
@@ -51,15 +51,15 @@ struct CalculatorView: View {
                         }
                         Text("")
                         Text("")
-                        Button("+") {
+                        OperatorButtonView(mathOperator: "+") {
                             calcEngine.addOperatorPressed()
                         }
                     }
                     GridRow {
-                        Button("Clear") {
+                        FunctionButtonView(function: "Clear") {
                             calcEngine.clear()
                         }.gridCellColumns(2)
-                        Button("Enter") {
+                        FunctionButtonView(function: "Enter") {
                             calcEngine.addNumber()
                         }.gridCellColumns(2)
                     }
